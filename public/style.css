@@ -1,0 +1,303 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #050816;
+    color: white;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(5, 8, 22, 0.85);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #00d9ff;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 30px;
+}
+
+nav a:hover {
+    color: #00d9ff;
+}
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 100px 8%;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    max-width: 750px;
+    z-index: 2;
+}
+
+.tag {
+    color: #00d9ff;
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: 64px;
+    line-height: 1.1;
+}
+
+.hero h1 span {
+    color: #00d9ff;
+}
+
+.hero p {
+    margin-top: 25px;
+    font-size: 19px;
+    line-height: 1.7;
+    color: #b8bfd3;
+}
+
+.buttons {
+    margin-top: 35px;
+}
+
+.buttons a {
+    display: inline-block;
+    padding: 14px 25px;
+    margin-right: 15px;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.primary {
+    background: #00d9ff;
+    color: #000;
+}
+
+.secondary {
+    border: 1px solid #00d9ff;
+    color: white;
+}
+
+.floating-icons .icon {
+    position: absolute;
+    font-size: 55px;
+    opacity: 0.5;
+    animation: float 5s ease-in-out infinite;
+}
+
+.icon1 {
+    top: 25%;
+    right: 20%;
+}
+
+.icon2 {
+    top: 55%;
+    right: 10%;
+    animation-delay: 1s;
+}
+
+.icon3 {
+    top: 30%;
+    right: 40%;
+    animation-delay: 2s;
+}
+
+.icon4 {
+    bottom: 20%;
+    right: 30%;
+    animation-delay: 3s;
+}
+
+@keyframes float {
+
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-25px);
+    }
+
+}
+
+.learning,
+.journey,
+.architecture {
+    padding: 100px 8%;
+    text-align: center;
+}
+
+h2 {
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+
+.section-description {
+    color: #aab1c5;
+    margin-bottom: 50px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.card {
+    padding: 30px;
+    border: 1px solid #202742;
+    border-radius: 15px;
+    background: #0b1025;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    border-color: #00d9ff;
+}
+
+.card h3 {
+    color: #00d9ff;
+    margin-bottom: 15px;
+}
+
+.card p {
+    color: #aab1c5;
+    line-height: 1.6;
+}
+
+.journey {
+    background: #080d20;
+}
+
+.pipeline {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.pipeline div {
+    padding: 20px 25px;
+    border: 1px solid #00d9ff;
+    border-radius: 10px;
+    animation: pulse 2s infinite;
+}
+
+.pipeline span {
+    color: #00d9ff;
+    font-size: 25px;
+}
+
+@keyframes pulse {
+
+    0% {
+        box-shadow: 0 0 0px rgba(0, 217, 255, 0.1);
+    }
+
+    50% {
+        box-shadow: 0 0 25px rgba(0, 217, 255, 0.4);
+    }
+
+    100% {
+        box-shadow: 0 0 0px rgba(0, 217, 255, 0.1);
+    }
+
+}
+
+.flow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    margin-top: 50px;
+}
+
+.flow-box {
+    padding: 30px;
+    min-width: 180px;
+    border: 1px solid #00d9ff;
+    border-radius: 12px;
+    background: #0b1025;
+}
+
+.flow-box strong {
+    display: block;
+    font-size: 20px;
+}
+
+.flow-box small {
+    color: #aab1c5;
+}
+
+.arrow {
+    font-size: 35px;
+    color: #00d9ff;
+}
+
+footer {
+    padding: 50px;
+    text-align: center;
+    background: #03050e;
+}
+
+footer h3 {
+    color: #00d9ff;
+    margin-bottom: 10px;
+}
+
+footer p {
+    color: #8d95aa;
+    margin-top: 10px;
+}
+
+@media(max-width: 800px) {
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    nav {
+        display: none;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .flow {
+        flex-direction: column;
+    }
+
+    .pipeline {
+        flex-direction: column;
+    }
+
+}

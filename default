@@ -1,0 +1,21 @@
+# add/replace this file in nginx directory /etc/nginx/sites-available/default
+server {
+
+    listen 80;
+
+    server_name _;
+
+    location / {
+
+        proxy_set_header Host $host;
+
+        proxy_set_header X-Real-IP $remote_addr;
+
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        proxy_pass http://10.0.2.50:8080; #replace with backend private ip
+    }
+
+}
