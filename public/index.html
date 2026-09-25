@@ -1,190 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>DevOps Shack</title>
-
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DevOps Shack | Proxy Command Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
+  <div class="noise"></div>
+  <div class="orb orb-a"></div><div class="orb orb-b"></div><div class="orb orb-c"></div>
 
-<header>
-    <div class="logo">DEVOPS<span>SHACK</span></div>
-
+  <header class="topbar">
+    <a class="brand" href="#home">
+      <span class="brand-mark">DS</span>
+      <span><strong>DEVOPS</strong> SHACK<small>Proxy Command Center</small></span>
+    </a>
     <nav>
-        <a href="#home">Home</a>
-        <a href="#learning">Learning</a>
-        <a href="#labs">Labs</a>
-        <a href="#architecture">Architecture</a>
+      <a href="#home">Overview</a><a href="#flow">Live Flow</a><a href="#terminal">Terminal</a><a href="#chat">DevOps Chat</a>
     </nav>
-</header>
+    <div class="live-pill"><span></span> LAB ONLINE</div>
+  </header>
 
-
-<section class="hero" id="home">
-
-    <div class="hero-content">
-
-        <p class="tag">CLOUD • DEVOPS • AUTOMATION</p>
-
-        <h1>
-            MASTER THE CLOUD.<br>
-            <span>BUILD. DEPLOY. AUTOMATE.</span>
-        </h1>
-
-        <p>
-            Learn AWS, Kubernetes, Terraform, Docker,
-            CI/CD and modern DevOps through practical
-            hands-on projects.
-        </p>
-
-        <div class="buttons">
-            <a href="#labs" class="primary">Explore Labs</a>
-            <a href="#learning" class="secondary">Start Learning</a>
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-copy reveal">
+        <div class="eyebrow">LIVE REVERSE PROXY LAB · 100% PRACTICAL</div>
+        <h1>See every request<br><span>travel through your stack.</span></h1>
+        <p>Visualize Browser → Nginx Reverse Proxy → Private Node.js Backend in real time. Trigger requests, inspect responses, watch packets move, and explain the architecture directly from the UI.</p>
+        <div class="hero-actions">
+          <button class="btn primary" id="sendRequestBtn">Send Live Request <span>↗</span></button>
+          <a class="btn ghost" href="#flow">Explore Architecture</a>
         </div>
-
-    </div>
-
-    <div class="floating-icons">
-
-        <div class="icon icon1">☁</div>
-        <div class="icon icon2">⚙</div>
-        <div class="icon icon3">◈</div>
-        <div class="icon icon4">🚀</div>
-
-    </div>
-
-</section>
-
-
-<section class="learning" id="learning">
-
-    <h2>What We Teach</h2>
-
-    <p class="section-description">
-        Practical DevOps skills built around real-world
-        cloud and automation technologies.
-    </p>
-
-    <div class="cards">
-
-        <div class="card">
-            <h3>AWS</h3>
-            <p>Build scalable cloud infrastructure and applications.</p>
+        <div class="mini-stats">
+          <div><strong id="requestCount">0</strong><span>Requests</span></div>
+          <div><strong id="latency">--</strong><span>Latency</span></div>
+          <div><strong id="successRate">100%</strong><span>Success</span></div>
         </div>
+      </div>
 
-        <div class="card">
-            <h3>Docker</h3>
-            <p>Containerize applications and simplify deployments.</p>
+      <div class="hero-visual reveal delay-1">
+        <div class="visual-ring ring-1"></div><div class="visual-ring ring-2"></div>
+        <div class="center-core"><span>NGINX</span><small>REVERSE PROXY</small><i></i></div>
+        <div class="float-card card-browser"><b>01</b><strong>Browser</strong><small>Public Client</small></div>
+        <div class="float-card card-backend"><b>03</b><strong>Node.js</strong><small>Private Backend</small></div>
+        <div class="float-card card-secure"><b>✓</b><strong>Protected</strong><small>Backend hidden</small></div>
+        <div class="packet packet-a"></div><div class="packet packet-b"></div>
+      </div>
+    </section>
+
+    <section class="section" id="flow">
+      <div class="section-head reveal"><div><span class="eyebrow">REQUEST VISUALIZER</span><h2>Watch the proxy flow happen live.</h2></div><button class="btn small" id="replayBtn">Replay Flow</button></div>
+
+      <div class="flow-grid reveal delay-1">
+        <article class="node-card client-node"><div class="node-icon">◉</div><span class="step">STEP 01</span><h3>Browser Client</h3><p>Sends HTTP request to the public endpoint.</p><div class="node-meta"><span>Source</span><b>Internet</b></div></article>
+        <div class="connector"><div class="track"><i></i></div><small>HTTP REQUEST</small></div>
+        <article class="node-card proxy-node active"><div class="node-icon">⇄</div><span class="step">STEP 02</span><h3>Nginx Proxy</h3><p>Accepts the request and forwards it internally.</p><div class="node-meta"><span>Role</span><b>Public EC2</b></div></article>
+        <div class="connector"><div class="track"><i></i></div><small>PROXY PASS</small></div>
+        <article class="node-card backend-node"><div class="node-icon">⌘</div><span class="step">STEP 03</span><h3>Node.js API</h3><p>Private backend processes and returns JSON.</p><div class="node-meta"><span>Role</span><b>Private EC2</b></div></article>
+      </div>
+
+      <div class="status-grid reveal">
+        <article class="status-card"><div class="status-top"><span>Backend Health</span><i class="dot green"></i></div><strong id="healthStatus">Checking...</strong><p>/api/health</p></article>
+        <article class="status-card"><div class="status-top"><span>Environment</span><i class="dot cyan"></i></div><strong id="environment">--</strong><p>Backend metadata</p></article>
+        <article class="status-card"><div class="status-top"><span>Server</span><i class="dot purple"></i></div><strong id="serverName">--</strong><p>Hidden from client</p></article>
+        <article class="status-card"><div class="status-top"><span>Last Response</span><i class="dot amber"></i></div><strong id="lastCode">--</strong><p>HTTP status</p></article>
+      </div>
+    </section>
+
+    <section class="section split-section" id="terminal">
+      <div class="terminal-card reveal">
+        <div class="terminal-bar"><div><i></i><i></i><i></i></div><span>proxy-trace.log</span><b>LIVE</b></div>
+        <div class="terminal-body" id="terminalBody">
+          <p><span class="muted">[boot]</span> DevOps Shack proxy visualizer initialized</p>
+          <p><span class="muted">[ready]</span> Waiting for incoming request...</p>
+          <p><span class="prompt">$</span> click <b>Send Live Request</b> to begin</p>
         </div>
+      </div>
 
-        <div class="card">
-            <h3>Kubernetes</h3>
-            <p>Deploy and manage containerized workloads.</p>
+      <div class="trace-panel reveal delay-1">
+        <span class="eyebrow">REQUEST DETAILS</span><h2>Inspect what actually happened.</h2>
+        <div class="trace-row"><span>Method</span><strong>GET</strong></div>
+        <div class="trace-row"><span>Endpoint</span><strong>/api/info</strong></div>
+        <div class="trace-row"><span>Via</span><strong>Nginx Reverse Proxy</strong></div>
+        <div class="trace-row"><span>Destination</span><strong>Private Node.js Service</strong></div>
+        <div class="json-box"><div class="json-head">Latest backend response <span>JSON</span></div><pre id="jsonOutput">{
+  "waiting": true
+}</pre></div>
+      </div>
+    </section>
+
+    <section class="section" id="chat">
+      <div class="chat-shell reveal">
+        <aside class="chat-side">
+          <span class="eyebrow">DEVOPS COPILOT</span><h2>Ask the demo.</h2><p>Use quick commands to explain the proxy flow during your video.</p>
+          <button class="quick" data-q="Explain reverse proxy">Explain reverse proxy</button>
+          <button class="quick" data-q="Why hide backend">Why hide backend?</button>
+          <button class="quick" data-q="Check backend health">Check backend health</button>
+          <button class="quick" data-q="Show request path">Show request path</button>
+        </aside>
+        <div class="chat-main">
+          <div class="chat-header"><div><span class="bot-avatar">DS</span><span><strong>DevOps Shack AI</strong><small><i></i> Online · Demo Assistant</small></span></div><span class="secure">SECURE SESSION</span></div>
+          <div class="messages" id="messages">
+            <div class="message bot"><span class="avatar">DS</span><div><b>DevOps Shack AI</b><p>Welcome to the Proxy Lab. Ask me about reverse proxies, backend health, or the request path.</p></div></div>
+          </div>
+          <div class="chat-input"><input id="chatInput" placeholder="Ask something about this proxy architecture..." /><button id="chatSend">Send ↗</button></div>
         </div>
+      </div>
+    </section>
+  </main>
 
-        <div class="card">
-            <h3>Terraform</h3>
-            <p>Build infrastructure using Infrastructure as Code.</p>
-        </div>
-
-        <div class="card">
-            <h3>CI/CD</h3>
-            <p>Automate build, test and deployment pipelines.</p>
-        </div>
-
-        <div class="card">
-            <h3>Monitoring</h3>
-            <p>Understand metrics, logs and observability.</p>
-        </div>
-
-    </div>
-
-</section>
-
-
-<section class="journey" id="labs">
-
-    <h2>DevOps Journey</h2>
-
-    <div class="pipeline">
-
-        <div>CODE</div>
-        <span>→</span>
-
-        <div>BUILD</div>
-        <span>→</span>
-
-        <div>TEST</div>
-        <span>→</span>
-
-        <div>SCAN</div>
-        <span>→</span>
-
-        <div>DEPLOY</div>
-        <span>→</span>
-
-        <div>MONITOR</div>
-
-    </div>
-
-</section>
-
-
-<section class="architecture" id="architecture">
-
-    <h2>Request Flow</h2>
-
-    <p>
-        This application is running behind a reverse proxy.
-    </p>
-
-    <div class="flow">
-
-        <div class="flow-box">
-            <strong>Browser</strong>
-            <small>Internet</small>
-        </div>
-
-        <div class="arrow">→</div>
-
-        <div class="flow-box">
-            <strong>Nginx Proxy</strong>
-            <small>Public EC2</small>
-        </div>
-
-        <div class="arrow">→</div>
-
-        <div class="flow-box">
-            <strong>Node.js</strong>
-            <small>Private EC2</small>
-        </div>
-
-    </div>
-
-</section>
-
-
-<footer>
-
-    <h3>DEVOPS SHACK</h3>
-
-    <p>
-        Learn. Build. Deploy. Automate.
-    </p>
-
-    <p>
-        © 2026 DevOps Shack
-    </p>
-
-</footer>
-
-
-<script src="app.js"></script>
-
+  <footer><div class="brand"><span class="brand-mark">DS</span><span><strong>DEVOPS</strong> SHACK<small>Learn · Build · Deploy · Automate</small></span></div><p>Proxy Demo · 2026</p></footer>
+  <div class="toast" id="toast">Request completed successfully</div>
+  <script src="app.js"></script>
 </body>
-
 </html>
